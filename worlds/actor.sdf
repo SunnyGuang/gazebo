@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+   <world name="default">
+
+      <actor name="actor">
+         <skin>
+            <filename>walk.dae</filename>
+            <scale>1.0</scale>
+         </skin>
+         <pose>0 0 0 0 0 0</pose>
+         <animation name="walking">
+            <filename>walk.dae</filename>
+            <scale>1</scale>
+            <interpolate_x>true</interpolate_x>
+         </animation>
+         <script>
+            <loop>false</loop>
+            <delay_start>0</delay_start>
+            <auto_start>true</auto_start>
+         </script>
+      </actor>
+
+   </world>
+</sdf>

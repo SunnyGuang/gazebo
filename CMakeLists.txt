@@ -126,6 +126,9 @@ include_directories(
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/test.cpp
 # )
+#add_library(gazebo_pro SHARED gazebo_pro.cc)
+#target_link_libraries(gazebo_pro
+#  ${GAZEBO_LIBRARIES})
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries

@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/sunny/guang_ws/src/gazebo_pro/gazebo_pro.cc
+ignition/math/Pose3.hh
+-
+gazebo/physics/physics.hh
+/home/sunny/guang_ws/src/gazebo_pro/gazebo/physics/physics.hh
+gazebo/common/common.hh
+/home/sunny/guang_ws/src/gazebo_pro/gazebo/common/common.hh
+gazebo/gazebo.hh
+/home/sunny/guang_ws/src/gazebo_pro/gazebo/gazebo.hh
+

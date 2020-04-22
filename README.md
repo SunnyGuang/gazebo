@@ -1,6 +1,12 @@
 # gazebo
 
+Current Progress:
+Have scene(rebuild, size reduced), models, ped interface, mobile robot with gpu_lidar
 
-roslaunch gazebo_pro gazebo_mall.launch
+Launch file:
+roslaunch gazebo_pro mall_reduce_size.launch (run the scene and spawn mobile robot)
 
-rosrun gazebo_pro main.py
+Node:
+rosrun gazebo_pro new_method_spawn_model.py
+
+I didn't upload dataset to this repo (too big). If you need the dateset, I will try to send to you. It existed some issues, I will talk to you in online meeting.

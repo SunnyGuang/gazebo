@@ -5,17 +5,21 @@ from gazebo_msgs.msg import ModelState
 import rospy
 import os
 
+#def add_model(modelname,px,py):
+#    GAZEBO_MODEL_PATH = "~/robot_Fahad"
+#    os.system("rosrun gazebo_ros spawn_model -file " + GAZEBO_MODEL_PATH +"/model.sdf -sdf -model " +  "%s -x %d -y %d" %(modelname,px,py))
+
 def add_model(modelname,px,py):
-    GAZEBO_MODEL_PATH = "~/robot_Fahad"
-    os.system("rosrun gazebo_ros spawn_model -file " + GAZEBO_MODEL_PATH +"/model.sdf -sdf -model " +  "%s -x %d -y %d" %(modelname,px,py))
+    GAZEBO_MODEL_PATH = "~/guang_ws/src/gazebo_pro/urdf"
+    os.system("rosrun gazebo_ros spawn_model -file " + GAZEBO_MODEL_PATH +"/mybot.xacro -urdf -param robot_description -model " +  "%s -x %d -y %d" %(modelname,px,py))
 
 def pose_publish(modelname):
     pose_pub = rospy.Publisher('gazebo/set_model_state', ModelState, queue_size=1)
     pose_msg = ModelState()
     pose_msg.model_name = '%s'%modelname
 
-    pose_msg.pose.position.x = 5
-    pose_msg.pose.position.y = 6.5
+    pose_msg.pose.position.x = 2
+    pose_msg.pose.position.y = 8
     pose_msg.pose.position.z = 0
 
     # rospy.loginfo('update position: %d,%d'%(px,py))

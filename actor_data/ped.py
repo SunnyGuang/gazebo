@@ -11,11 +11,17 @@ actor_array = np.empty([91,1])
 actor_list = actor_array.tolist()
 #print(actor_array,actor_list)
 
+#def ad_x(x):
+#    return (x/1000)* 137.6/140 - 7.06 #7.06 6.94
+
+#def ad_y(y):
+#    return (y/1000)*68.35/60 + 12.115 #6.43 7.315 #7.815(+1) 8.815(1.5) 10.315(2) 12.315(-0.2)
+
 def ad_x(x):
-    return (x/1000)* 137.6/140 - 7.06 #7.06 6.94
+    return (x/1000) - 10 #(rate: 120.6/140)
 
 def ad_y(y):
-    return (y/1000)*68.35/60 + 7.815 #6.43 7.315
+    return (y/1000) + 10 # (rate: 53.6/60)
 
 # initial setup
 # list [ actor_order [ time_step [ data  ]  ] ]
@@ -44,7 +50,7 @@ for i in range(85):
     unused_list.append(i+6)
     actor_list[i+6][0]=([200, 200, 200,200])
 
-for i in range(1, 100):
+for i in range(81000, 82000):
     data = []
     data = a.extract_timewin_at(i)
 
@@ -120,7 +126,7 @@ f.write('\n    <include>')
 f.write('\n      <uri>model://sun</uri>')
 f.write('\n    </include>')
 f.write('\n    <include>')
-f.write('\n      <uri>model://mall_new_reduce_size</uri>')
+f.write('\n      <uri>model://Ped_mall</uri>')
 f.write('\n    </include>\n')
 f.close()
 
@@ -132,7 +138,7 @@ f.close()
 
 
 
-for j in range(10):
+for j in range(50):
     f = open("ped.world","a")
     c = '\n    <actor name="actor%d">'%(j+1)
     f.write(c)
@@ -173,13 +179,13 @@ for j in range(10):
         # case appear actor:
         if (actor_list[j][i][1] == 200) and (actor_list[j][i+1][1]!=200):
             c1="\n          <waypoint>"
-            c2="\n              <time>%g</time>"%(i/5)
+            c2="\n              <time>%g</time>"%(i/25+0.03)
             c3="\n              <pose>200 200 0 0 0 0</pose>"
             c4="\n          </waypoint>\n"
             c = c1 + c2 + c3 + c4
 
             b1="\n          <waypoint>"
-            b2="\n              <time>%g</time>"%((i)/5+0.2)
+            b2="\n              <time>%g</time>"%((i)/25+0.04)
             b3="\n              <pose>%g %g 0 0 0 %g</pose>"%(actor_list[j][i+1][1],actor_list[j][i+1][2], actor_list[j][i+1][3])
             b4="\n          </waypoint>\n"
             b = b1 + b2 + b3 + b4
@@ -192,7 +198,7 @@ for j in range(10):
         #case disappear actor:
         if (actor_list[j][i][1] != 200) and (actor_list[j][i+1][1]==200):
             c1="\n          <waypoint>"
-            c2="\n              <time>%g</time>"%(i/5 + 0.2)
+            c2="\n              <time>%g</time>"%(i/25 + 0.01)  #0.04 --> 0.001 disapear rate
             c3="\n              <pose>200 200 0 0 0 0</pose>"
             c4="\n          </waypoint>\n"
             c = c1 + c2 + c3 + c4
@@ -202,7 +208,7 @@ for j in range(10):
 
         if (actor_list[j][i][1]!=200) and (actor_list[j][i+1][1]!=200):
             c1="\n          <waypoint>"
-            c2="\n              <time>%g</time>"%((i)/5+0.2)
+            c2="\n              <time>%g</time>"%((i)/25+0.04)
             c3="\n              <pose>%g %g 0 0 0 %g</pose>"%(actor_list[j][i+1][1],actor_list[j][i+1][2], actor_list[j][i+1][3])
             c4="\n          </waypoint>\n"
             c = c1 + c2 + c3 + c4
@@ -213,7 +219,7 @@ for j in range(10):
     # final state:
     if actor_list[j][1][1] == 200:
         c1="\n          <waypoint>"
-        c2="\n              <time>%g</time>"%(100/5+0.2)
+        c2="\n              <time>%g</time>"%(1000/25+0.04)  # 1000 is the different for time steps
         c3="\n              <pose>200 200 0 0 0 0</pose>"
         c4="\n          </waypoint>\n"
         c = c1 + c2 + c3 + c4
